@@ -24,7 +24,13 @@ spec:
             protocol: UDP
           - containerPort: 4443        
           image: jitsi/jvb:stable-6433
-          resources: {}
+          resources:
+            requests:
+              cpu: 100m
+              memory: "256Mi"
+            limits:
+              cpu: 200m
+              memory: "512Mi"
           imagePullPolicy: IfNotPresent
           env:
             - name: XMPP_SERVER
