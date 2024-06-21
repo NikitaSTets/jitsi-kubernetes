@@ -6,38 +6,34 @@ metadata:
   name: web
   namespace: jitsi
 spec:
-  type: NodePort
+  type: LoadBalancer
   externalTrafficPolicy: Cluster
   ports:
   - name: "http"
     port: 80
-    targetPort: 80
-    nodePort: 32080
   - name: "https"
     port: 443
-    targetPort: 443
-    nodePort: 32443
   selector:
     k8s-app: web
 
 # http://{NODE-IP}:32080
----
- apiVersion: networking.k8s.io/v1
- kind: Ingress
- metadata:
-   name: jitsi
-   namespace: jitsi
-   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
- spec:
-  rules:
-  - host: jitsi.k8s.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web
-            port:
-              name: "https"
+# ---
+ # apiVersion: networking.k8s.io/v1
+ # kind: Ingress
+ # metadata:
+   # name: jitsi
+   # namespace: jitsi
+   # annotations:
+    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+ # spec:
+  # rules:
+  # - host: jitsi.k8s.com
+    # http:
+      # paths:
+      # - path: /
+        # pathType: Prefix
+        # backend:
+          # service:
+            # name: web
+            # port:
+              # name: "https"
