@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    k8s-app: jvb
-  name: jvb
+    k8s-app: jvb-2
+  name: jvb-2
   namespace: jitsi
 spec:
   replicas: 1
@@ -11,18 +11,18 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      k8s-app: jvb
+      k8s-app: jvb-2
   template:
     metadata:
       labels:
-        k8s-app: jvb
+        k8s-app: jvb-2
     spec:
       containers:
-        - name: jvb
+        - name: jvb-2
           ports:
           - containerPort: 8080
             protocol: UDP
-          - containerPort: 10000
+          - containerPort: 10000   
           image: jitsi/jvb:stable
           resources:
             requests:
@@ -54,7 +54,7 @@ spec:
             - name: JVB_PORT
               value: "8080"
             - name: JVB_TCP_PORT
-              value: "10000"
+              value: "10000"  
             - name: JVB_AUTH_PASSWORD
               value: 6ba13a7ae9fa26809a3705273d568c5e
             - name: JICOFO_AUTH_PASSWORD
@@ -63,4 +63,3 @@ spec:
               value: jvbbrewery
             - name: TZ
               value: America/Los_Angeles
-

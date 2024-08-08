@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    service: jvb
-  name: jvb-udp
+    service: jvb-2
+  name: jvb-udp-2
   namespace: jitsi
 spec:
   type: NodePort
@@ -13,9 +13,9 @@ spec:
     port: 8080
     protocol: UDP
     targetPort: 8080
-    nodePort: 30300
+    nodePort: 30301
   - name: "10000"
     port: 10000
-    targetPort: 10000   
+    targetPort: 10000
   selector:
     k8s-app: jvb
