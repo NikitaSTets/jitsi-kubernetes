@@ -9,13 +9,13 @@ spec:
   type: NodePort
   externalTrafficPolicy: Cluster
   ports:
-  - name: "8080"
-    port: 8080
+  - name: "30300"
+    port: 30300
     protocol: UDP
-    targetPort: 8080
+    targetPort: 30300
     nodePort: 30300
-  - name: "10000"
-    port: 10000
-    targetPort: 10000   
+  - name: "4443"
+    port: 4443
+    targetPort: 4443   
   selector:
     k8s-app: jvb
